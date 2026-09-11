@@ -32,7 +32,25 @@ The audit built the graph and walked it: **338 edges connect two `PROVED` nodes,
 
 A name like `DERIVED_FROM` invites exactly the misreading this note exists to prevent.
 
-## 2. The 1,043 "multi-hop implication chains" are a lexical artifact.
+## 2. The 8,276 "implication chains" are prose split at the word "forces". **[re-checked]**
+
+A second pass located the source file and measured it. The 8,276 edges are free text split at the
+words **`forces` (2,748), `yields` (2,103), `hence` (1,757), `therefore` (686)**. The corpus's own
+master report says so in as many words: *"passages extracted from therefore/hence/implies/forces
+language."*
+
+**7,052 of the 8,276 (85%) have a "premise" that ends mid-clause with no terminal punctuation.**
+1,387 carry no problem attribution at all. Neither side of such an edge is a statement.
+
+Worse, those `IMPLIES` rows **do not resolve**. They exist only in a reports file, not in the live
+ledger, and their endpoint object ids do not dereference against the landed object store: 4,000 were
+tried against the 30,438-object index, **0 hits**.
+
+The obligation DAG that was supposed to carry composition has, across all 226 files, 7,048 nodes,
+2,760 dependency edges, **maximum depth 2**, and **zero depth-2-or-greater paths touching a PROVED
+node**.
+
+## 2b. The 1,043 "multi-hop implication chains" are a lexical artifact.
 
 They are built by overlapping-text similarity, with mean stitch similarity around 0.39 to 0.51. In
 the length-2 chains, both steps are **literally the same sentence, taken from two copies of the same
@@ -72,6 +90,33 @@ footprint, these files cannot support an unqualified claim of kernel verificatio
 
 **None of these five files, and none of the contaminated verdict table, is in any public
 repository.** This audit was run before they could become one.
+
+## 4b. Erdos 218: a theorem recorded VERIFIED whose proof cites nine declarations recorded FAILED. **[re-checked]**
+
+This is the sharpest defect found, and it is a defect in the verdict *table*, not in Lean.
+
+The file's own `.verify.json` behaves correctly: it reports `VERIFIED_PARTIAL`, `exitCode: 1`, 13
+errors (`unsolved goals` x4, a `mod_cast` type mismatch, and `unexpected token 'theorem'`), and it
+marks the broken lemmas `clean: false`.
+
+The **CSV verdict table** is where it goes wrong. Per-declaration rows for that same file:
+
+| declaration | verdict | exit | axioms |
+|---|---|---|---|
+| `Erdos218L1.cntLE_succ`, `cntLE_eq`, `cntGE_succ`, `cntGE_eq`, `ratioLE`, `ratioGE`, `key`, `densityLE`, `densityGE` | **FAILED** | 1 | `propext; sorryAx; Classical.choice; Quot.sound` |
+| `msl_fmz_erdos218_campaign_001_R005_L1` | **VERIFIED** | 1 | *(empty)* |
+
+**Nine lemmas failed with `sorryAx` in their footprint. The headline declaration, whose proof term is
+built from `densityLE` and `densityGE`, is recorded VERIFIED with an empty axiom field.** A theorem
+cannot be clean when the lemmas its proof cites did not elaborate.
+
+The file is also textually malformed in the way described in finding 3 — a theorem spliced into a
+statement position — which is what produced the `unexpected token 'theorem'` error.
+
+**And it would not be about Erdos 218 even if it compiled.** It defines `d n = if n % 2 = 0 then 1
+else 2`, a toy alternating sequence, not the prime gaps `p_{n+1} - p_n`. Its third conclusion
+contradicts the real problem's third clause. It is a placeholder model wearing the problem's name,
+which is exactly the statement-firewall failure this estate's own doctrine is named after.
 
 ## 5. The ore is heavily duplicated and internally contradictory.
 
