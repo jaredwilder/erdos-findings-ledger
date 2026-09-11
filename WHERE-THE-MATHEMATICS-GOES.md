@@ -67,10 +67,51 @@ in the same transcript, and the refutation never left the file.
 | **251** | The filed derivation's engine refuted — `E_n = 2^n(S−S_n)` does **not** tend to 0, it grows like `2p_{n+1}` — then **repaired, both directions closed** | neither VAULT nor findings; filed `UNTESTED` |
 | **329** | Translation-invariance obstruction killing an entire Sidon block-construction family: `{0,1,3}` and `{0,1,3,9}+T` collide for **any** `T`, because cross-sum collisions depend on within-block differences | neither |
 | **855** | `π(x+y) ≤ π(x)+π(y)` fails **exactly** on `{(1, p−1) : p prime}`, excess exactly 1 — and a correction to the certificate it audits at `x=y=3` | bare `(1,1)` to VAULT; the characterisation nowhere |
-| **400** | The `g₂` extremal table refuted by exact division: `g₂(2)=1` not 0, `g₂(9)≥2` not 1, and the filed `n=11` witness `(9,3)` gives `11!/(9!·3!) = 55/3 ∉ ℤ` | neither — the cleanest total drop of an exact computation |
+| **400** | The `g₂` extremal table refuted by exact division | **see the correction below — this row is sharper than "neither"** |
 | **859** | Claimed density table refuted by inclusion–exclusion: `d₃ = 2/3`, not the filed `1/3`; `d₅ = 2/5`, not `9/20` | neither |
 | **1139** | Five consecutive `Ω ≥ 3` integers between the primes 241 and 247 — `242=2·11²`, `243=3⁵`, `244=2²·61`, `245=5·7²`, `246=2·3·41` | VAULT only |
 | **535** | The frozen predicate refuted under **all three** readings, with a witness for each: `{1,4,5}` under 3-sum-free, `{2,3,5}` fails under sum-free, `{2,3,4}` fails under AP-free | neither |
+
+## Correction, published within the hour: what survived was the verdict, not the proof
+
+My first version of this page said the Erdős 400 refutation reached "neither VAULT nor findings."
+**That was slightly wrong, and the accurate version is a worse indictment.**
+
+A downstream DAG node *did* carry the verdict forward, as prose:
+
+> *"RETRACTED by author boundary audit: … the universal lower bound (true, witness (n,1)) was
+> conflated with exact maxima … the spike values and witnesses contain concrete arithmetic errors."*
+
+**What did not survive is the arithmetic that did the refuting.** Searching the entire rescue tree
+for `120960`, `2177280` or `55/3` returns nothing, and no VAULT row contains them. These three facts
+exist only in the transcript, and each is checkable in seconds — I checked all three:
+
+```
+9!  / (7!·4!)  =  362880 / 120960   =  3 exactly
+        so (7,4) is admissible at n=9 and g₂(9) ≥ 7+4−9 = 2, against the filed 1
+
+11! / (9!·3!)  =  39916800 / 2177280  =  55/3  ∉ ℤ
+        so the filed n=11 witness (9,3) is INADMISSIBLE, not merely suboptimal
+
+2!·1! = 2  divides  2! = 2
+        so g₂(2) = 1, against the filed 0
+```
+
+**The pipeline preserved "this was wrong" and discarded "here is why, exactly."**
+
+A retraction without its counterexample cannot be re-checked, cannot be reused, and cannot stop the
+same error recurring. It is the least useful half of a refutation to keep, and it is the half that
+was kept.
+
+Two further facts from the same check:
+
+- That campaign produced **at least two distinct refutations** and the ledger kept one and lost the
+  other. The VAULT holds a separate `REFUTED` row for `n=24` with witness `(13,13)`. **Flagging
+  rather than asserting:** `24!/(13!·13!)` is not an integer either, so that surviving row's witness
+  may have the same admissibility defect as the one it refutes. Worth checking before reuse.
+- The audit's own "found in findings" hits for Erdős 943 and 890 were **false positives** — a
+  generic phrase matched rows belonging to different problems. Tight-pattern re-checks confirm both
+  are genuinely absent.
 
 ## One the audit itself got wrong
 
