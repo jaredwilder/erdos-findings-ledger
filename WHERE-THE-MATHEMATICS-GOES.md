@@ -25,14 +25,48 @@ pass over the same field would likely yield another fifteen of comparable qualit
 
 ## The VAULT is not append-safe
 
-Two campaigns carry a **refuted claim at a higher tier than its own correction**:
+> **Corrected 2026-09-11, same day, after re-reading the VAULT directly.** The first version of this
+> section said "fifteen VAULT rows" for Erdős 943 and implied the supersession machinery was
+> unused. **Both were wrong**, and the corrected version is narrower. The original text is kept
+> below the correction so the overstatement stays visible.
 
-- **Erdős 943** — fifteen VAULT rows still stand at `PROVED_BY_SPEAKER` or
-  `COMPUTATION_SUPPORTED` asserting a bound that a later row refutes.
-- **Erdős 9** — the incorrect characterisation sits at `COMPUTATION_SUPPORTED`, its correction sits
-  *below* it at `UNTESTED`.
+**The supersession machinery is in use.** `superseded_by` is set on **4,242 of 6,882 rows**, and all
+221 problems holding a `REFUTED` row have at least one link set somewhere. Any claim that the field
+"exists and is simply not set" is false.
 
-**Anything reading the VAULT by rank picks the wrong row.**
+**A screen that flags 198 of 225 problems is not a finding.** Keying on the problem id flags every
+problem where a refuted row and an unsuperseded higher-tier row coexist — but a problem legitimately
+holds a refuted claim and a proved claim about **different sub-statements**, and mathematics here is
+done per lemma, not per problem. Spot-checking two of the worst-flagged:
+
+- **Erdős 479** (3 refuted, 19 unsuperseded higher) — the refuted rows are about a verifier abort, a
+  parity claim, and a truncated standing lemma. The kernel rows are about `k=0` witnesses,
+  congruence algebra, and a 2-adic valuation. **Different statements. Not a conflict.**
+- **Erdős 936** (9 refuted, 18 higher) — the kernel row already carries `{9, 25, 121, 5041}`, which
+  is exactly the list the refutation corrected. **The correction had already propagated.**
+
+**One inversion survives and is confirmed by hand.** Erdős 943 holds a `REFUTED` row giving
+`f(153) = 8` against `τ(153) = 6`, while an unsuperseded `PROVED_BY_SPEAKER` row in the same VAULT
+still asserts `f(n) ≤ τ(n) for ALL n exactly`. Same statement, both live, no link between them. The
+true tier counts for that problem are 5 `PROVED_BY_SPEAKER` and 8 `COMPUTATION_SUPPORTED`, not
+fifteen.
+
+<details>
+<summary>The original, overstated version</summary>
+
+> Two campaigns carry a **refuted claim at a higher tier than its own correction**:
+>
+> - **Erdős 943** — fifteen VAULT rows still stand at `PROVED_BY_SPEAKER` or
+>   `COMPUTATION_SUPPORTED` asserting a bound that a later row refutes.
+> - **Erdős 9** — the incorrect characterisation sits at `COMPUTATION_SUPPORTED`, its correction
+>   sits *below* it at `UNTESTED`.
+>
+> **Anything reading the VAULT by rank picks the wrong row.**
+
+The Erdős 943 row count was wrong, and the section generalised one confirmed case into a structural
+claim about the VAULT that the row data does not support.
+
+</details>
 
 ## The strongest single item, verified here
 
