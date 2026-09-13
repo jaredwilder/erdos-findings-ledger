@@ -6,6 +6,14 @@ The 52 public records were selected from a larger findings archive after excludi
 
 Author: Jared Wilder. First public timestamp: 2026-09-10.
 
+## Focused home for the #1192 energy program
+
+The [representation-energy repository](https://github.com/jaredwilder/erdos1192-representation-energy)
+now connects the corrected inequalities here with their campaign, route
+retractions and exact open boundary. The original note remains in this ledger;
+the focused home provides the mathematical reading map and pinned source copies.
+
+
 ## What is in the 52 records
 
 The ledger includes:
